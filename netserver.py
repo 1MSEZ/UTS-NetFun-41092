@@ -19,8 +19,11 @@ while True:
 	try:
 		# Receives messages from the client
 		message =  connectionSocket.recv(1024)
+		message = message.decode("UTF-8")
+		print(message)
 		filename = message.split()[1]
 		file = open(filename[1:])
+		print("The file opened is", filename)
 		outputdata = file.read()
 		connectionSocket.send(b"HTTP/1.1 200 OK\r\n\r\n")
  
